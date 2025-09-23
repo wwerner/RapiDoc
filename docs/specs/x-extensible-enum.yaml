@@ -1,0 +1,70 @@
+openapi: 3.0.0
+info:
+  title: x-extensible-enum Example
+  version: 1.0.0
+servers:
+  - url: https://api.example.com
+paths:
+  /people:
+    get:
+      summary: Get people
+      description: Returns a list of people with optional filters for hobbies, tags, and marital status.
+      operationId: getPeople
+      tags:
+        - Person
+      parameters:
+        - name: hobbies
+          in: query
+          description: Add hobbies to the person (not-exploded)
+          style: form
+          explode: false
+          schema:
+            type: string
+            x-extensible-enum:
+              - computers
+              - hiking
+              - swimming
+              - movies
+              - music
+              - dancing
+              - reading
+              - painting
+            default: hiking
+        - name: tags
+          in: query
+          description: Add tags to the person (not-exploded)
+          style: form
+          explode: false
+          schema:
+            type: array
+            items:
+              type: string
+        - name: maritalStatus
+          in: query
+          description: Marital status of the person.
+          example: unmarried
+          schema:
+            type: string
+            x-extensible-enum:
+              - married
+              - unmarried
+              - widowed
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Person"
+tags:
+  - name: Person
+    description: Person Datatype
+components:
+  schemas:
+    Person:
+      type: object
+      required:
+        - name
+        - photoUrls
