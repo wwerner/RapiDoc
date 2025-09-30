@@ -1,7 +1,7 @@
 
 /**
 * @preserve
-* RapiDoc 9.3.8 - WebComponent to View OpenAPI docs
+* RapiDoc 9.3.9-fork_wwerner - WebComponent to View OpenAPI docs
 * License: MIT
 * Repo   : https://github.com/rapi-doc/RapiDoc
 * Author : Mrinmoy Majumdar
